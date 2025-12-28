@@ -20,24 +20,26 @@ library(ggplot2) # Added this for your barplot
 
 ## Overview: The 2024 Fire Season
 
-This presentation analyzes the spatial and temporal distribution of wildfires across Portugal using interactive data visualization.
-Core Objectives
+This presentation analyzes the spatial and temporal distribution of wildfires across Portugal using interactive data visualization. Core Objectives
 
-    Identify Peaks: pin-point periods of high fire frequency.
+```         
+Identify Peaks: pin-point periods of high fire frequency.
 
-    Impact Assessment: Analyze the scale of burned areas (ha).
+Impact Assessment: Analyze the scale of burned areas (ha).
 
-    Interactive Exploration: Utilize zooming and tooltips for granular data inspection.
+Interactive Exploration: Utilize zooming and tooltips for granular data inspection.
+```
 
 Data Summary
 
-    Temporal Scope: January 1 – December 31, 2024.
+```         
+Temporal Scope: January 1 – December 31, 2024.
 
-    Key Variables: Start date (DHInicio), Total Burned Area (AreaTotal), and GPS Coordinates.
+Key Variables: Start date (DHInicio), Total Burned Area (AreaTotal), and GPS Coordinates.
+```
 
 ## Inputs and Outputs
 
-# Data Processing and Plotting
 ```{r Data Processing, include=TRUE}
 # Data processing
 
@@ -65,40 +67,7 @@ fires_daily <- fogos_2024 %>%
         select(-dnrf_low, -fwi_low)
 
 ```
-```{r Data Plotting, include=TRUE}
-plot_ly(fires_daily, x = ~Date, y = ~DNRF) %>%
-  add_lines(line = list(color = "#E44D2E", width = 2), name = "Fires") %>%
-  add_markers(marker = list(color = "#A30000", size = 4), showlegend = FALSE) %>%
-  layout(
-    title = list(text = "Daily Wildfire Frequency (2024)", x = 0),
-    xaxis = list(title = "Month", showgrid = FALSE),
-    yaxis = list(title = "Number of Recorded Fires"),
-    hovermode = "x unified",
-    paper_bgcolor = 'rgba(0,0,0,0)',
-    plot_bgcolor = 'rgba(240,240,240,0.5)'
-  )
-```
 
-##Daily Wildfire Frequency
-
-
-
-```{r Data Plotting2, include=TRUE}
-renderPlotly({
-  plot_ly(fires_daily, x = ~Date, y = ~DNRF) %>%
-    add_lines(line = list(color = "#E44D2E", width = 2), name = "Fires") %>%
-    add_markers(marker = list(color = "#A30000", size = 4), showlegend = FALSE) %>%
-    layout(
-      title = list(text = "Daily Wildfire Frequency (2024)", x = 0),
-      xaxis = list(title = "Month", showgrid = FALSE),
-      yaxis = list(title = "Number of Recorded Fires"),
-      hovermode = "x unified",
-      paper_bgcolor = 'rgba(0,0,0,0)',
-      plot_bgcolor = 'rgba(240,240,240,0.5)'
-    )
-})
-```  
-  
 ##Interactive Explorer: Top Days
 
 ```{r Data Explorer, include=TRUE}
@@ -207,12 +176,14 @@ server <- function(input, output) {
 }
 
 
-``` 
-  
+```
+
 ## Conclusion & Insights
 
-    Seasonality: The data reveals a clear correlation between rising summer temperatures and fire frequency.
+```         
+Seasonality: The data reveals a clear correlation between rising summer temperatures and fire frequency.
 
-    Intensity: While most days record low burned areas, a few "extreme" days account for the majority of the annual total.
+Intensity: While most days record low burned areas, a few "extreme" days account for the majority of the annual total.
 
-    Next Steps: Integration of meteorological data (IPMA) to model fire risk based on humidity and wind speed
+Next Steps: Integration of meteorological data (IPMA) to model fire risk based on humidity and wind speed
+```
